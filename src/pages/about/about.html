@@ -1,0 +1,51 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>Locais - Fundaj</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-toolbar>
+      <ion-segment [(ngModel)]="segments" >
+        <ion-segment-button value="recife">
+            Recife
+        </ion-segment-button>
+        <ion-segment-button value="petrolina">
+            Petrolina
+        </ion-segment-button>
+        <ion-segment-button value="caruaru">
+            Caruaru
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+
+</ion-header>
+
+  
+
+<ion-content padding>
+
+  <div [ngSwitch]="segments">
+
+    <ion-list *ngSwitchCase="'recife'">
+      <ion-item>Universidade Federal de Pernambuco</ion-item>
+      <ion-item>Universidade Federal Rural de Pernambuco</ion-item>
+      <ion-item>Instituto Federal de Pernambuco</ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'petrolina'">
+      <ion-item>Universidade Federal do Vale do São Francisco</ion-item>
+      <ion-item>Instituto Federal do Sertão Pernambuco</ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'caruaru'">
+      <ion-item>Universidade Federal de Pernambuco</ion-item>
+    </ion-list>
+    
+  </div>
+
+</ion-content>

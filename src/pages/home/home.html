@@ -1,14 +1,68 @@
 <ion-header>
+
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <ion-title text-center>mapsExampleTwo</ion-title>
   </ion-navbar>
+
 </ion-header>
 
+
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+    
+  <ion-card>
+
+      <ion-toolbar color="primary">
+
+        <ion-searchbar
+            #searchbar
+            [(ngModel)]="autocomplete.query"
+            [showCancelButton]="true"
+            (ionInput)="updateSearch()"
+            placeholder="Informe a origem">
+
+        </ion-searchbar>
+      
+      </ion-toolbar>
+
+    <ion-list>
+
+        <ion-item *ngFor="let item of autocompleteItems" (click)="chooseItem(item)">
+
+            {{ item.description }}
+
+        </ion-item>
+
+    </ion-list><br/>
+  
+        <button ion-item (click)="mudarStatus()" class="child">
+
+             <ion-icon item-right name="add" *ngIf="!statusLocal"></ion-icon>
+             <ion-icon item-right name="close" *ngIf="statusLocal"></ion-icon>
+
+             {{ nameLocal }}
+
+        </button>
+
+        <ion-list *ngIf="statusLocal" >
+
+            <ion-item *ngFor="let item of locaisFundaj" (click)="selecionarLocal(item)">
+
+                  {{ item.name }}
+
+            </ion-item>
+
+        </ion-list><br/>
+
+    <button color="primary" ion-button full (click)="calculateAndDisplayRoute()">Obter rota</button><br/><br/>
+
+   
+
+    <ion-card-content #map id="map"></ion-card-content>
+
+     <ion-fab right bottom>
+        <button ion-fab color="primary" (click)="openModal()"><ion-icon name="information"></ion-icon></button>
+    </ion-fab>
+
+  </ion-card>
+
 </ion-content>
